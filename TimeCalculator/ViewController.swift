@@ -224,6 +224,7 @@ extension ViewController {
         let interval = displayValue
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
         formatter.unitsStyle = .full
 
         let formattedString = formatter.string(from: TimeInterval(interval))!

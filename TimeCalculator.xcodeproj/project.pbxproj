@@ -10,6 +10,9 @@
 		84938921A47DA05B770A1DA4 /* Pods_TimeCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F828D23A189AEC863B609F3 /* Pods_TimeCalculator.framework */; };
 		D3797467290AC36E00B686D3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797466290AC36E00B686D3 /* SettingViewController.swift */; };
 		D379746A290AC94900B686D3 /* CalcuatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797469290AC94900B686D3 /* CalcuatorModel.swift */; };
+		D3B210C1290B75AD0096A566 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B210C0290B75AD0096A566 /* SettingView.swift */; };
+		D3B210C5290B78D10096A566 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B210C4290B78D10096A566 /* SettingTableViewCell.swift */; };
+		D3B210C9290B9D4A0096A566 /* PreferencesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B210C8290B9D4A0096A566 /* PreferencesTableViewCell.swift */; };
 		D3D5DEEE290A047500292983 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5DEED290A047500292983 /* AppDelegate.swift */; };
 		D3D5DEF0290A047500292983 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5DEEF290A047500292983 /* SceneDelegate.swift */; };
 		D3D5DEF2290A047500292983 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5DEF1290A047500292983 /* ViewController.swift */; };
@@ -24,6 +27,9 @@
 		7F828D23A189AEC863B609F3 /* Pods_TimeCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3797466290AC36E00B686D3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D3797469290AC94900B686D3 /* CalcuatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcuatorModel.swift; sourceTree = "<group>"; };
+		D3B210C0290B75AD0096A566 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		D3B210C4290B78D10096A566 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		D3B210C8290B9D4A0096A566 /* PreferencesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewCell.swift; sourceTree = "<group>"; };
 		D3D5DEEA290A047500292983 /* TimeCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D5DEED290A047500292983 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3D5DEEF290A047500292983 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				D3797466290AC36E00B686D3 /* SettingViewController.swift */,
+				D3B210C0290B75AD0096A566 /* SettingView.swift */,
+				D3B210C4290B78D10096A566 /* SettingTableViewCell.swift */,
+				D3B210C8290B9D4A0096A566 /* PreferencesTableViewCell.swift */,
 			);
 			name = SettingVIewController;
 			sourceTree = "<group>";
@@ -240,7 +249,10 @@
 			files = (
 				D3797467290AC36E00B686D3 /* SettingViewController.swift in Sources */,
 				D3D5DF06290A073300292983 /* CalculatorView.swift in Sources */,
+				D3B210C5290B78D10096A566 /* SettingTableViewCell.swift in Sources */,
+				D3B210C9290B9D4A0096A566 /* PreferencesTableViewCell.swift in Sources */,
 				D3D5DEF2290A047500292983 /* ViewController.swift in Sources */,
+				D3B210C1290B75AD0096A566 /* SettingView.swift in Sources */,
 				D3D5DEEE290A047500292983 /* AppDelegate.swift in Sources */,
 				D379746A290AC94900B686D3 /* CalcuatorModel.swift in Sources */,
 				D3D5DEF0290A047500292983 /* SceneDelegate.swift in Sources */,

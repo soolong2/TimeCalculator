@@ -21,12 +21,10 @@ class Calculator {
 
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.hour, .minute]
-            formatter.unitsStyle = .full
+            formatter.unitsStyle = .positional
 
             let formattedString = formatter.string(from: TimeInterval(interval))!
             print(formattedString)
-            
-            
             
             
         }else if lastOperation == "-" {
@@ -35,8 +33,9 @@ class Calculator {
             let interval = accumlator
 
             let formatter = DateComponentsFormatter()
+           
             formatter.allowedUnits = [.hour, .minute]
-            formatter.unitsStyle = .full
+            formatter.unitsStyle = .positional
 
             let formattedString = formatter.string(from: TimeInterval(interval))!
             print(formattedString)
@@ -48,17 +47,10 @@ class Calculator {
 
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.hour, .minute]
-            formatter.unitsStyle = .full
+            formatter.unitsStyle = .positional
 
             let formattedString = formatter.string(from: TimeInterval(interval))!
             print(formattedString)
-            
-            
-            
-            
-            
-            
-            
         }
         
     }
@@ -76,6 +68,9 @@ class Calculator {
     var result: Double{
         get{
             return accumlator
+            
+            
+            
         }
     }
 }
