@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		84938921A47DA05B770A1DA4 /* Pods_TimeCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F828D23A189AEC863B609F3 /* Pods_TimeCalculator.framework */; };
+		D346F175290BBF2500EE1CC6 /* OthersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F174290BBF2500EE1CC6 /* OthersTableViewCell.swift */; };
+		D346F178290C079800EE1CC6 /* UesrDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F177290C079800EE1CC6 /* UesrDefaultView.swift */; };
+		D346F17A290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F179290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift */; };
 		D3797467290AC36E00B686D3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797466290AC36E00B686D3 /* SettingViewController.swift */; };
 		D379746A290AC94900B686D3 /* CalcuatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797469290AC94900B686D3 /* CalcuatorModel.swift */; };
 		D3B210C1290B75AD0096A566 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B210C0290B75AD0096A566 /* SettingView.swift */; };
@@ -25,6 +28,9 @@
 		0408F87502E508DA218457A5 /* Pods-TimeCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCalculator.release.xcconfig"; path = "Target Support Files/Pods-TimeCalculator/Pods-TimeCalculator.release.xcconfig"; sourceTree = "<group>"; };
 		3AE9997694C0E64F6A17CB80 /* Pods-TimeCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCalculator.debug.xcconfig"; path = "Target Support Files/Pods-TimeCalculator/Pods-TimeCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 		7F828D23A189AEC863B609F3 /* Pods_TimeCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D346F174290BBF2500EE1CC6 /* OthersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersTableViewCell.swift; sourceTree = "<group>"; };
+		D346F177290C079800EE1CC6 /* UesrDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UesrDefaultView.swift; sourceTree = "<group>"; };
+		D346F179290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UesrDefaultTableViewCell.swift; sourceTree = "<group>"; };
 		D3797466290AC36E00B686D3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D3797469290AC94900B686D3 /* CalcuatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcuatorModel.swift; sourceTree = "<group>"; };
 		D3B210C0290B75AD0096A566 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -60,13 +66,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D346F176290C061B00EE1CC6 /* SettingViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				D3B210C4290B78D10096A566 /* SettingTableViewCell.swift */,
+				D3B210C8290B9D4A0096A566 /* PreferencesTableViewCell.swift */,
+				D346F174290BBF2500EE1CC6 /* OthersTableViewCell.swift */,
+			);
+			name = SettingViewCells;
+			sourceTree = "<group>";
+		};
 		D3797468290AC87100B686D3 /* SettingVIewController */ = {
 			isa = PBXGroup;
 			children = (
 				D3797466290AC36E00B686D3 /* SettingViewController.swift */,
 				D3B210C0290B75AD0096A566 /* SettingView.swift */,
-				D3B210C4290B78D10096A566 /* SettingTableViewCell.swift */,
-				D3B210C8290B9D4A0096A566 /* PreferencesTableViewCell.swift */,
+				D346F176290C061B00EE1CC6 /* SettingViewCells */,
 			);
 			name = SettingVIewController;
 			sourceTree = "<group>";
@@ -117,6 +132,8 @@
 				D3D5DEF1290A047500292983 /* ViewController.swift */,
 				D3D5DF05290A073300292983 /* CalculatorView.swift */,
 				D3797469290AC94900B686D3 /* CalcuatorModel.swift */,
+				D346F177290C079800EE1CC6 /* UesrDefaultView.swift */,
+				D346F179290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift */,
 			);
 			name = MainViewController;
 			sourceTree = "<group>";
@@ -247,12 +264,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D346F17A290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift in Sources */,
 				D3797467290AC36E00B686D3 /* SettingViewController.swift in Sources */,
 				D3D5DF06290A073300292983 /* CalculatorView.swift in Sources */,
 				D3B210C5290B78D10096A566 /* SettingTableViewCell.swift in Sources */,
+				D346F178290C079800EE1CC6 /* UesrDefaultView.swift in Sources */,
 				D3B210C9290B9D4A0096A566 /* PreferencesTableViewCell.swift in Sources */,
 				D3D5DEF2290A047500292983 /* ViewController.swift in Sources */,
 				D3B210C1290B75AD0096A566 /* SettingView.swift in Sources */,
+				D346F175290BBF2500EE1CC6 /* OthersTableViewCell.swift in Sources */,
 				D3D5DEEE290A047500292983 /* AppDelegate.swift in Sources */,
 				D379746A290AC94900B686D3 /* CalcuatorModel.swift in Sources */,
 				D3D5DEF0290A047500292983 /* SceneDelegate.swift in Sources */,

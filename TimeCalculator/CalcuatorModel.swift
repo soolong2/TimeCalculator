@@ -8,51 +8,22 @@
 import Foundation
 
 class Calculator {
-    private var accumlator: Double =  0.0
+    private var accumlator: Int =  0
     private var lastOperation: String?
     
     
     
-    func setOperand(operand: Double) {
+    func setOperand(operand: Int) {
         if lastOperation == "+" {
             lastOperation = nil
             accumlator = accumlator + operand
-            let interval = accumlator
-
-            let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.hour, .minute]
-            formatter.unitsStyle = .positional
-
-            let formattedString = formatter.string(from: TimeInterval(interval))!
-            print(formattedString)
-            
-            
         }else if lastOperation == "-" {
                 lastOperation = nil
                 accumlator = accumlator - operand
-            let interval = accumlator
-
-            let formatter = DateComponentsFormatter()
-           
-            formatter.allowedUnits = [.hour, .minute]
-            formatter.unitsStyle = .positional
-
-            let formattedString = formatter.string(from: TimeInterval(interval))!
-            print(formattedString)
         }
         else{
             accumlator = operand
-            
-            let interval = accumlator
-
-            let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.hour, .minute]
-            formatter.unitsStyle = .positional
-
-            let formattedString = formatter.string(from: TimeInterval(interval))!
-            print(formattedString)
         }
-        
     }
     func performOperation(symbol: String) {
         switch symbol{
@@ -65,12 +36,9 @@ class Calculator {
         }
     }
     
-    var result: Double{
+    var result: Int{
         get{
             return accumlator
-            
-            
-            
         }
     }
 }

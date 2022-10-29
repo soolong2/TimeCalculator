@@ -9,9 +9,11 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+//    let userDefaults = UserDefaults.standard
+    
     var window: UIWindow?
 
-
+    let AppearanceHeader = PreferencesTableViewCell()
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -20,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController(rootViewController: mainVC)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+//        userDefaults.bool(forKey: "appearanceSwitchState")
         
+//        AppearanceHeader.updateInterfaceStyle()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

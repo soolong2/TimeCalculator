@@ -1,19 +1,20 @@
 //
-//  SettingTableViewCell.swift
+//  UesrDefaultTableViewCell.swift
 //  TimeCalculator
 //
-//  Created by so on 2022/10/28.
+//  Created by so on 2022/10/29.
 //
 
 import UIKit
 
-class SettingTableViewCell: UITableViewCell {
-    
-    static let identifier = "SettingTableViewCell"
+class UesrDefaultTableViewCell: UITableViewCell {
+
+    static let identifier = "UesrDefaultTableViewCell"
 
     lazy var title: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
+        label.text = "dasdsadasdasdsa"
         return label
     }()
 

@@ -20,6 +20,7 @@ class CalculatorView: UIView {
     let twoButton: UIButton = {
     let button = UIButton()
         button.backgroundColor = .systemOrange
+        button.titleColor(for: .normal)
         button.setTitle("2", for: .normal)
         return button
     }()
@@ -81,6 +82,7 @@ class CalculatorView: UIView {
     let 플러스Button: UIButton = {
     let button = UIButton()
         button.backgroundColor = .systemOrange
+        button.tintColor = .systemBackground
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitle("+", for: .normal)
         return button

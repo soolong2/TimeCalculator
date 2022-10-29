@@ -9,11 +9,13 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    let damodal = UesrDefaultView()
     private var modal: Calculator = Calculator()
-    private var displayValue: Double{
+    let darkAndLight = PreferencesTableViewCell()
+    var displayValue: Int{
         get{
             guard let text = resultText.text else { return 0 }
-            return Double(text) ?? 0
+            return Int(text) ?? 0
         }
         set{
             resultText.text = "\(newValue)"
@@ -23,6 +25,7 @@ class ViewController: UIViewController {
     private var isTypetingDigit: Bool = false
     var calView: CalculatorView = {
         let view = CalculatorView()
+        view.backgroundColor = .systemBackground
         view.oneButton.addTarget(CalculatorView(), action: #selector(oneButtonClick), for: .touchUpInside)
         view.twoButton.addTarget(CalculatorView(), action: #selector(twoButtonClick), for: .touchUpInside)
         view.threeButton.addTarget(CalculatorView(), action: #selector(threeButtonClick), for: .touchUpInside)
@@ -42,32 +45,54 @@ class ViewController: UIViewController {
   
     var resultTimeLable: UILabel = {
         let textFieldView = UILabel()
-        textFieldView.backgroundColor = .systemBlue
+        textFieldView.backgroundColor = .systemBackground
         textFieldView.text = "현재시간은??"
         return textFieldView
     }()
     
+     var uesrDefaultView: UesrDefaultView = {
+        let view = UesrDefaultView()
+         view.twoButton.addTarget(self, action: #selector(BackButton), for: .touchUpInside)
+         view.backgroundColor = .systemBackground
+         view.alpha = 2
+         view.isHidden = true
+        return view
+    }()
+    
+    let viewReturnButton: UIButton = {
+    let button = UIButton()
+        button.backgroundColor = .systemOrange
+        button.setImage(UIImage(named: "gearshape"), for: .normal)
+        return button
+    }()
+    
      var sample: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+         view.backgroundColor = .systemBackground
         return view
     }()
     
     let resultText: UILabel = {
         let textFieldView = UILabel()
-        textFieldView.backgroundColor = .systemOrange
+        textFieldView.backgroundColor = .systemBackground
         textFieldView.text = "00:00"
         return textFieldView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(measureButton))
+        darkAndLight.controlSwitch.isOn = darkAndLight.userDefaults.bool(forKey: "appearanceSwitchState")
+        darkAndLight.updateInterfaceStyle()
+        view.backgroundColor = .systemBackground
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(nextView1))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextView))
         addSubView()
         
     }
-    @objc func measureButton(_ sender: UIBarButtonItem) {
+    @objc func nextView1(_ sender: UIBarButtonItem) {
+        uesrDefaultView.isHidden = false
+    }
+    @objc func nextView(_ sender: UIBarButtonItem) {
         let settingView = SettingViewController()
         self.navigationController?.pushViewController(settingView, animated: true)
     }
@@ -76,15 +101,26 @@ class ViewController: UIViewController {
         view.addSubview(sample)
         view.addSubview(resultText)
         view.addSubview(resultTimeLable)
+        view.addSubview(uesrDefaultView)
+    
         
         calView.snp.makeConstraints { make in
             make.top.equalTo(self.sample.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.view)
             make.height.equalTo(200)
         }
+        
+        uesrDefaultView.snp.makeConstraints { make in
+            make.top.leading.equalTo(self.view.safeAreaLayoutGuide)
+//            make.width.height.equalTo(300)
+            make.bottom.equalTo(sample).offset(-100)
+            make.trailing.equalTo(sample).offset(-150)
+        }
+        
         sample.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.trailing.equalTo(self.view)
+            make.leading.equalTo(uesrDefaultView)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide)
         }
         resultText.snp.makeConstraints { make in
             make.bottom.equalTo(sample.snp.bottom).offset(-30)
@@ -94,6 +130,7 @@ class ViewController: UIViewController {
             make.bottom.equalTo(resultText.snp.top).offset(-60)
             make.trailing.equalTo(resultText)
         }
+       
     }
 }
 
@@ -230,26 +267,39 @@ extension ViewController {
         let formattedString = formatter.string(from: TimeInterval(interval))!
         resultTimeLable.text = formattedString
         
-        modal.setOperand(operand: displayValue)
+        modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
-        displayValue = modal.result
+        displayValue = Int(modal.result)
         isTypetingDigit = false
+        damodal.da.append(displayValue)
+        damodal.resultText1.reloadData()
+        print(damodal.da)
     }
     @objc func 플러스ButtonClick() {
         guard let operation = calView.플러스Button.titleLabel?.text else {return
         }
-        modal.setOperand(operand: displayValue)
+        modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
-        displayValue = modal.result
+        displayValue = Int(modal.result)
         isTypetingDigit = false
+        damodal.da.append(displayValue)
+        damodal.resultText1.reloadData()
+        print(damodal.da)
     }
     @objc func 마이너스ButtonClick() {
         guard let operation = calView.마이너스Button.titleLabel?.text else {return
         }
-        modal.setOperand(operand: displayValue)
+        modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = modal.result
         isTypetingDigit = false
+        damodal.da.append(displayValue)
+        damodal.resultText1.reloadData()
+        print(damodal.da)
+    }
+    @objc func BackButton() {
+        uesrDefaultView.isHidden = true
+        
     }
 }
 

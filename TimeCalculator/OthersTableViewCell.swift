@@ -1,5 +1,5 @@
 //
-//  SettingTableViewCell.swift
+//  OthersTableViewCell.swift
 //  TimeCalculator
 //
 //  Created by so on 2022/10/28.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class SettingTableViewCell: UITableViewCell {
-    
-    static let identifier = "SettingTableViewCell"
 
-    lazy var title: UILabel = {
+class OthersTableViewCell: UITableViewCell {
+    static let identifier = "OthersTableViewCell"
+   
+     var title: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
+         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
 
@@ -28,6 +28,7 @@ class SettingTableViewCell: UITableViewCell {
     private func addContentView() {
         contentView.addSubview(title)
        
+     
         title.snp.makeConstraints { make in
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
             make.trailing.equalTo(self.safeAreaLayoutGuide)
@@ -36,4 +37,5 @@ class SettingTableViewCell: UITableViewCell {
             }
             
         }
-    }
+
+}

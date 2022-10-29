@@ -14,16 +14,13 @@ class SettingView: UIView {
     var datasouce2 = ["다크테마","그리드","키보드사운드"]
     var datasouce3 = ["앱평가","몫","기부","피드백 보내기"]
     
-    
     let settingTablewView : UITableView = {
         let tableView = UITableView()
         //        tableView.allowsSelection = false
-        tableView.backgroundColor = .white
-        tableView.alpha = 0.7
+        tableView.backgroundColor = .systemBackground
         //        tableView.separatorStyle = .none
-        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
-        //        tableView.register(PreferencesTableViewCell.self, forCellReuseIdentifier: PreferencesTableViewCell.identifier)
-        //        tableView.rowHeight = UITableView.automaticDimension
+     
+        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
@@ -32,15 +29,15 @@ class SettingView: UIView {
         setupView()
         setupConstraints()
     }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
     func setupView() {
-        settingTablewView.dataSource = self
         settingTablewView.delegate = self
-        
+        settingTablewView.dataSource = self
+        settingTablewView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
+        settingTablewView.register(PreferencesTableViewCell.self, forCellReuseIdentifier: PreferencesTableViewCell.identifier)
+        settingTablewView.register(OthersTableViewCell.self, forCellReuseIdentifier: OthersTableViewCell.identifier)
     }
     
     func setupConstraints() {
@@ -74,25 +71,20 @@ extension SettingView: UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as? SettingTableViewCell else { return UITableViewCell()}
         if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as? SettingTableViewCell else { return UITableViewCell()}
             cell.title.text = datasouce[indexPath.row]
-            //                              cell.textLabel?.text = "\(datasouce[indexPath.row])"
-            cell.controlSwitch.isHidden = true
+            return cell
         } else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PreferencesTableViewCell", for: indexPath) as? PreferencesTableViewCell else { return UITableViewCell()}
             cell.title.text = datasouce2[indexPath.row]
-            //                              cell.textLabel?.text = "\(datasouce2[indexPath.row])"
-            cell.controlSwitch.isSelected = true
+            return cell
         } else if indexPath.section == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "OthersTableViewCell", for: indexPath) as? OthersTableViewCell else { return UITableViewCell()}
             cell.title.text = datasouce3[indexPath.row]
-            cell.controlSwitch.isHidden = true
-            cell.controlSwitch.isSelected = true
+            return cell
         }
-        else {
-            return UITableViewCell()
-        }
-        
-        return cell
+        return UITableViewCell()
     }
     
     //        if indexPath.section == 0 {
