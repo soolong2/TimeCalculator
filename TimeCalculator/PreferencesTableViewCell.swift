@@ -12,22 +12,24 @@ class PreferencesTableViewCell: UITableViewCell {
     let userDefaults = UserDefaults.standard
     
     static let identifier = "PreferencesTableViewCell"
-    
-    
-    
+    let defaults = UserDefaults.standard
+    let darkModeSwitchAct = "controlSwitch"
+    lazy var title: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 18)
+        return label
+    }()
     func updateInterfaceStyle() {
-        
         if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if #available(iOS 15.0, *) {
                 let windows = window.windows.first
                 windows?.overrideUserInterfaceStyle = self.controlSwitch.isOn == true ? .dark : .light
-                userDefaults.set(controlSwitch.isOn, forKey: "appearanceSwitchState") // 스위치 상태 저장하기 위해 UserDefaults에 상태 저장
+                userDefaults.set(controlSwitch.isOn, forKey: "appearanceSwitchState")
             }
         }
     }
-    
     @objc func handleAppearanceChange(_ sender: UISwitch) {
-       self.updateInterfaceStyle()
+        self.updateInterfaceStyle()
     }
     var controlSwitch: UISwitch = {
         let swicth: UISwitch = UISwitch()
@@ -42,39 +44,19 @@ class PreferencesTableViewCell: UITableViewCell {
                 }
             }
         }
-        
         swicth.addTarget(self, action: #selector(handleAppearanceChange), for: .valueChanged)
         return swicth
     }()
-    
-    let defaults = UserDefaults.standard
-    let darkModeSwitchAct = "controlSwitch"
-    
-    var darkMode = false
-    
-    @objc func onClickSwitch(sender: UISwitch) {
-        
-        
-    }
-    lazy var title: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
-        return label
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addContentView()
-        
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been impl")
     }
     private func addContentView() {
         contentView.addSubview(title)
         contentView.addSubview(controlSwitch)
-        
         title.snp.makeConstraints { make in
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
             make.top.bottom.equalTo(self.safeAreaLayoutGuide)

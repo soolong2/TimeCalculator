@@ -10,18 +10,14 @@ import Foundation
 class Calculator {
     private var accumlator: Int =  0
     private var lastOperation: String?
-    
-    
-    
     func setOperand(operand: Int) {
         if lastOperation == "+" {
             lastOperation = nil
             accumlator = accumlator + operand
-        }else if lastOperation == "-" {
-                lastOperation = nil
-                accumlator = accumlator - operand
-        }
-        else{
+        } else if lastOperation == "-" {
+            lastOperation = nil
+            accumlator = accumlator - operand
+        } else {
             accumlator = operand
         }
     }
@@ -35,7 +31,6 @@ class Calculator {
             break
         }
     }
-    
     var result: Int{
         get{
             return accumlator

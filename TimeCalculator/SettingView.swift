@@ -16,14 +16,10 @@ class SettingView: UIView {
     
     let settingTablewView : UITableView = {
         let tableView = UITableView()
-        //        tableView.allowsSelection = false
         tableView.backgroundColor = .systemBackground
-        //        tableView.separatorStyle = .none
-     
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -39,7 +35,6 @@ class SettingView: UIView {
         settingTablewView.register(PreferencesTableViewCell.self, forCellReuseIdentifier: PreferencesTableViewCell.identifier)
         settingTablewView.register(OthersTableViewCell.self, forCellReuseIdentifier: OthersTableViewCell.identifier)
     }
-    
     func setupConstraints() {
         addSubview(settingTablewView)
         settingTablewView.snp.makeConstraints { make in
@@ -48,12 +43,10 @@ class SettingView: UIView {
         }
     }
 }
-
 extension SettingView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -70,7 +63,6 @@ extension SettingView: UITableViewDataSource{
         return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as? SettingTableViewCell else { return UITableViewCell()}
             cell.title.text = datasouce[indexPath.row]
@@ -78,7 +70,13 @@ extension SettingView: UITableViewDataSource{
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PreferencesTableViewCell", for: indexPath) as? PreferencesTableViewCell else { return UITableViewCell()}
             cell.title.text = datasouce2[indexPath.row]
-            return cell
+            if datasouce2.count == 3 {
+                cell.title.text = datasouce2[indexPath.row]
+                cell.controlSwitch.isHidden = false
+                return cell
+            } else {
+                return cell
+            }
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "OthersTableViewCell", for: indexPath) as? OthersTableViewCell else { return UITableViewCell()}
             cell.title.text = datasouce3[indexPath.row]
@@ -86,20 +84,4 @@ extension SettingView: UITableViewDataSource{
         }
         return UITableViewCell()
     }
-    
-    //        if indexPath.section == 0 {
-    //            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as? SettingTableViewCell else {return UITableViewCell()}
-    //            cell.title.text = datasouce[indexPath.row]
-    //            return cell
-    //        } else if indexPath.section == 1 {
-    //            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PreferencesTableViewCell", for: indexPath) as? PreferencesTableViewCell else {return UITableViewCell()}
-    //            cell.title.text = datasouce2[indexPath.row]
-    //        }else if indexPath.section == 2 {
-    //            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as? SettingTableViewCell else {return UITableViewCell()}
-    //            cell.title.text = datasouce2[indexPath.row]
-    //        }
-    //        return UITableViewCell()
-    //    }
-    
-    
 }

@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     let damodal = UesrDefaultView()
     private var modal: Calculator = Calculator()
     let darkAndLight = PreferencesTableViewCell()
+    let defaults = UserDefaults.standard
+    var a = UserDefaults.standard.integer(forKey: "dis")
     var displayValue: Int{
         get{
             guard let text = resultText.text else { return 0 }
@@ -19,11 +21,13 @@ class ViewController: UIViewController {
         }
         set{
             resultText.text = "\(newValue)"
+         defaults.set(displayValue, forKey: "dis")
+            self.a = UserDefaults.standard.integer(forKey: "dis")
+//            damodal.resultText.reloadData()
         }
     }
-    
     private var isTypetingDigit: Bool = false
-    var calView: CalculatorView = {
+    var calculatorView: CalculatorView = {
         let view = CalculatorView()
         view.backgroundColor = .systemBackground
         view.oneButton.addTarget(CalculatorView(), action: #selector(oneButtonClick), for: .touchUpInside)
@@ -36,13 +40,13 @@ class ViewController: UIViewController {
         view.eightButton.addTarget(CalculatorView(), action: #selector(eightButtonClick), for: .touchUpInside)
         view.nineButton.addTarget(CalculatorView(), action: #selector(nineButtonClick), for: .touchUpInside)
         view.zeroButton.addTarget(CalculatorView(), action: #selector(zeroButtonClick), for: .touchUpInside)
-        view.초기화Button.addTarget(CalculatorView(), action: #selector(초기화ButtonClick), for: .touchUpInside)
-        view.계산Button.addTarget(CalculatorView(), action: #selector(계산ButtonClick), for: .touchUpInside)
-        view.플러스Button.addTarget(CalculatorView(), action: #selector(플러스ButtonClick), for: .touchUpInside)
-        view.마이너스Button.addTarget(CalculatorView(), action: #selector(마이너스ButtonClick), for: .touchUpInside)
+        view.resetButton.addTarget(CalculatorView(), action: #selector(초기화ButtonClick), for: .touchUpInside)
+        view.resultButton.addTarget(CalculatorView(), action: #selector(계산ButtonClick), for: .touchUpInside)
+        view.plusButton.addTarget(CalculatorView(), action: #selector(플러스ButtonClick), for: .touchUpInside)
+        view.minusButton.addTarget(CalculatorView(), action: #selector(마이너스ButtonClick), for: .touchUpInside)
         return view
     }()
-  
+    
     var resultTimeLable: UILabel = {
         let textFieldView = UILabel()
         textFieldView.backgroundColor = .systemBackground
@@ -50,33 +54,33 @@ class ViewController: UIViewController {
         return textFieldView
     }()
     
-     var uesrDefaultView: UesrDefaultView = {
+    var uesrDefaultView: UesrDefaultView = {
         let view = UesrDefaultView()
-         view.twoButton.addTarget(self, action: #selector(BackButton), for: .touchUpInside)
-         view.backgroundColor = .systemBackground
-         view.alpha = 2
-         view.isHidden = true
+        view.clearButton.addTarget(self, action: #selector(BackButton), for: .touchUpInside)
+        view.trashButton.addTarget(self, action: #selector(deleteButton), for: .touchUpInside)
+        view.backgroundColor = .systemBackground
+        view.isHidden = true
         return view
     }()
     
     let viewReturnButton: UIButton = {
-    let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .systemOrange
         button.setImage(UIImage(named: "gearshape"), for: .normal)
         return button
     }()
     
-     var sample: UIView = {
+    var labelView: UIView = {
         let view = UIView()
-         view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
         return view
     }()
     
     let resultText: UILabel = {
-        let textFieldView = UILabel()
-        textFieldView.backgroundColor = .systemBackground
-        textFieldView.text = "00:00"
-        return textFieldView
+        let resultTextLabel = UILabel()
+        resultTextLabel.backgroundColor = .systemBackground
+        resultTextLabel.text = "00:00"
+        return resultTextLabel
     }()
     
     override func viewDidLoad() {
@@ -84,61 +88,54 @@ class ViewController: UIViewController {
         darkAndLight.controlSwitch.isOn = darkAndLight.userDefaults.bool(forKey: "appearanceSwitchState")
         darkAndLight.updateInterfaceStyle()
         view.backgroundColor = .systemBackground
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(nextView1))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(DefaultView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextSettingView))
         addSubView()
+        print(a)
         
     }
-    @objc func nextView1(_ sender: UIBarButtonItem) {
+    @objc func DefaultView(_ sender: UIBarButtonItem) {
         uesrDefaultView.isHidden = false
     }
-    @objc func nextView(_ sender: UIBarButtonItem) {
+    @objc func nextSettingView(_ sender: UIBarButtonItem) {
         let settingView = SettingViewController()
         self.navigationController?.pushViewController(settingView, animated: true)
     }
     func addSubView() {
-        view.addSubview(calView)
-        view.addSubview(sample)
+        view.addSubview(calculatorView)
+        view.addSubview(labelView)
         view.addSubview(resultText)
         view.addSubview(resultTimeLable)
         view.addSubview(uesrDefaultView)
-    
         
-        calView.snp.makeConstraints { make in
-            make.top.equalTo(self.sample.snp.bottom)
+        calculatorView.snp.makeConstraints { make in
+            make.top.equalTo(self.labelView.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.view)
             make.height.equalTo(200)
         }
-        
         uesrDefaultView.snp.makeConstraints { make in
             make.top.leading.equalTo(self.view.safeAreaLayoutGuide)
-//            make.width.height.equalTo(300)
-            make.bottom.equalTo(sample).offset(-100)
-            make.trailing.equalTo(sample).offset(-150)
+            make.bottom.equalTo(labelView).offset(-100)
+            make.trailing.equalTo(labelView).offset(-150)
         }
-        
-        sample.snp.makeConstraints { make in
+        labelView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.equalTo(uesrDefaultView)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide)
         }
         resultText.snp.makeConstraints { make in
-            make.bottom.equalTo(sample.snp.bottom).offset(-30)
-            make.trailing.equalTo(sample.snp.trailing).offset(-30)
+            make.bottom.equalTo(labelView.snp.bottom).offset(-30)
+            make.trailing.equalTo(labelView.snp.trailing).offset(-30)
         }
         resultTimeLable.snp.makeConstraints { make in
             make.bottom.equalTo(resultText.snp.top).offset(-60)
             make.trailing.equalTo(resultText)
         }
-       
     }
 }
-
 extension ViewController {
     @objc func oneButtonClick() {
-        guard let digit = calView.oneButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.oneButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -147,9 +144,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func twoButtonClick() {
-        guard let digit = calView.twoButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.twoButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -158,9 +153,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func threeButtonClick() {
-        guard let digit = calView.threeButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.threeButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -169,9 +162,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func fourButtonClick() {
-        guard let digit = calView.fourButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.fourButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -180,9 +171,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func fiveButtonClick() {
-        guard let digit = calView.fiveButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.fiveButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -191,9 +180,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func sixButtonClick() {
-        guard let digit = calView.sixButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.sixButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -202,9 +189,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func sevenButtonClick() {
-        guard let digit = calView.sevenButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.sevenButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -213,9 +198,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func eightButtonClick() {
-        guard let digit = calView.eightButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.eightButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -224,9 +207,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func nineButtonClick() {
-        guard let digit = calView.nineButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.nineButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -235,9 +216,7 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func zeroButtonClick() {
-        guard let digit = calView.zeroButton.currentTitle, let curentText = resultText.text else {
-            return
-        }
+        guard let digit = calculatorView.zeroButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
             resultText.text = curentText + digit
         } else {
@@ -256,50 +235,56 @@ extension ViewController {
         isTypetingDigit = true
     }
     @objc func 계산ButtonClick() {
-        guard let operation = calView.계산Button.titleLabel?.text else {return
-        }
+        guard let operation = calculatorView.resultButton.titleLabel?.text else { return }
         let interval = displayValue
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.zeroFormattingBehavior = .pad
         formatter.unitsStyle = .full
-
+        
         let formattedString = formatter.string(from: TimeInterval(interval))!
         resultTimeLable.text = formattedString
-        
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
         isTypetingDigit = false
         damodal.da.append(displayValue)
-        damodal.resultText1.reloadData()
+        damodal.resultText.reloadData()
         print(damodal.da)
     }
     @objc func 플러스ButtonClick() {
-        guard let operation = calView.플러스Button.titleLabel?.text else {return
-        }
+        guard let operation = calculatorView.plusButton.titleLabel?.text else { return }
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
         isTypetingDigit = false
         damodal.da.append(displayValue)
-        damodal.resultText1.reloadData()
+        damodal.resultText.reloadData()
         print(damodal.da)
     }
     @objc func 마이너스ButtonClick() {
-        guard let operation = calView.마이너스Button.titleLabel?.text else {return
-        }
+        guard let operation = calculatorView.minusButton.titleLabel?.text else { return }
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = modal.result
         isTypetingDigit = false
         damodal.da.append(displayValue)
-        damodal.resultText1.reloadData()
+        damodal.resultText.reloadData()
         print(damodal.da)
     }
     @objc func BackButton() {
         uesrDefaultView.isHidden = true
-        
     }
+    @objc func deleteButton() {
+//        UserDefaults.standard.removeObject(forKey: "dis")
+        let alert = UIAlertController(title: "삭제하시겠습니까?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "아니요", style: .cancel,handler: nil))
+        alert.addAction(UIAlertAction(title: "예", style: .default,handler: { _ in
+            UserDefaults.standard.removeObject(forKey: "dis")
+        }))
+        self.present(alert, animated: true, completion: nil)
+      
+    }
+    
 }
 

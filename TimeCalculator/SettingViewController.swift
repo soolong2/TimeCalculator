@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-
+    
     var settingLabel: UILabel = {
         let settingLabel = UILabel()
         settingLabel.textColor = .systemBlue
@@ -17,28 +17,25 @@ class SettingViewController: UIViewController {
         return settingLabel
     }()
     var settingLine: UIView = {
-       let settingLine = UIView()
+        let settingLine = UIView()
         settingLine.backgroundColor = .systemBlue
         settingLine.layer.cornerRadius = 5
         return settingLine
     }()
     var settingTebleView: SettingView = {
-       let settingLine = SettingView()
+        let settingLine = SettingView()
         settingLine.backgroundColor = .white
         return settingLine
     }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addSubView()
     }
-    
     func addSubView() {
         view.addSubview(settingLabel)
         view.addSubview(settingLine)
         view.addSubview(settingTebleView)
-       
         
         settingLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
@@ -54,5 +51,4 @@ class SettingViewController: UIViewController {
             make.trailing.leading.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-
 }
