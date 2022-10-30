@@ -29,6 +29,7 @@ class UesrDefaultView: UIView {
         let textFieldView = UILabel()
         textFieldView.backgroundColor = .systemBackground
 //        textFieldView.text = "현재시간은??"
+        textFieldView.numberOfLines = 0
         return textFieldView
     }()
     

@@ -11,6 +11,8 @@
 		D346F175290BBF2500EE1CC6 /* OthersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F174290BBF2500EE1CC6 /* OthersTableViewCell.swift */; };
 		D346F178290C079800EE1CC6 /* UesrDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F177290C079800EE1CC6 /* UesrDefaultView.swift */; };
 		D346F17A290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F179290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift */; };
+		D346F17C290ECC1D00EE1CC6 /* GridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F17B290ECC1D00EE1CC6 /* GridTableViewCell.swift */; };
+		D346F17E290ECC7000EE1CC6 /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346F17D290ECC7000EE1CC6 /* SoundTableViewCell.swift */; };
 		D3797467290AC36E00B686D3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797466290AC36E00B686D3 /* SettingViewController.swift */; };
 		D379746A290AC94900B686D3 /* CalcuatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797469290AC94900B686D3 /* CalcuatorModel.swift */; };
 		D3B210C1290B75AD0096A566 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B210C0290B75AD0096A566 /* SettingView.swift */; };
@@ -31,6 +33,8 @@
 		D346F174290BBF2500EE1CC6 /* OthersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersTableViewCell.swift; sourceTree = "<group>"; };
 		D346F177290C079800EE1CC6 /* UesrDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UesrDefaultView.swift; sourceTree = "<group>"; };
 		D346F179290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UesrDefaultTableViewCell.swift; sourceTree = "<group>"; };
+		D346F17B290ECC1D00EE1CC6 /* GridTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTableViewCell.swift; sourceTree = "<group>"; };
+		D346F17D290ECC7000EE1CC6 /* SoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
 		D3797466290AC36E00B686D3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D3797469290AC94900B686D3 /* CalcuatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcuatorModel.swift; sourceTree = "<group>"; };
 		D3B210C0290B75AD0096A566 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				D3B210C4290B78D10096A566 /* SettingTableViewCell.swift */,
 				D3B210C8290B9D4A0096A566 /* PreferencesTableViewCell.swift */,
 				D346F174290BBF2500EE1CC6 /* OthersTableViewCell.swift */,
+				D346F17B290ECC1D00EE1CC6 /* GridTableViewCell.swift */,
+				D346F17D290ECC7000EE1CC6 /* SoundTableViewCell.swift */,
 			);
 			name = SettingViewCells;
 			sourceTree = "<group>";
@@ -264,6 +270,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D346F17C290ECC1D00EE1CC6 /* GridTableViewCell.swift in Sources */,
+				D346F17E290ECC7000EE1CC6 /* SoundTableViewCell.swift in Sources */,
 				D346F17A290CCC6900EE1CC6 /* UesrDefaultTableViewCell.swift in Sources */,
 				D3797467290AC36E00B686D3 /* SettingViewController.swift in Sources */,
 				D3D5DF06290A073300292983 /* CalculatorView.swift in Sources */,

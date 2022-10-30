@@ -51,8 +51,8 @@ class ViewController: UIViewController {
         view.eightButton.addTarget(CalculatorView(), action: #selector(eightButtonClick), for: .touchUpInside)
         view.nineButton.addTarget(CalculatorView(), action: #selector(nineButtonClick), for: .touchUpInside)
         view.zeroButton.addTarget(CalculatorView(), action: #selector(zeroButtonClick), for: .touchUpInside)
-        view.resetButton.addTarget(CalculatorView(), action: #selector(초기화ButtonClick), for: .touchUpInside)
-        view.resultButton.addTarget(CalculatorView(), action: #selector(resetButtonClick), for: .touchUpInside)
+        view.resetButton.addTarget(CalculatorView(), action: #selector(resetButtonClick), for: .touchUpInside)
+        view.resultButton.addTarget(CalculatorView(), action: #selector(resultButtonClick), for: .touchUpInside)
         view.plusButton.addTarget(CalculatorView(), action: #selector(plusButtonClick), for: .touchUpInside)
         view.minusButton.addTarget(CalculatorView(), action: #selector(minusButtonClick), for: .touchUpInside)
         return view
@@ -236,7 +236,7 @@ extension ViewController {
         }
         isTypetingDigit = true
     }
-    @objc func 초기화ButtonClick() {
+    @objc func resetButtonClick() {
         if isTypetingDigit {
             resultText.text = "0"
             resultTimeLable.text = "현재시간은??"
@@ -246,7 +246,7 @@ extension ViewController {
         }
         isTypetingDigit = true
     }
-    @objc func resetButtonClick() {
+    @objc func resultButtonClick() {
         guard let operation = calculatorView.resultButton.titleLabel?.text else { return }
         let interval = displayValue
         let formatter = DateComponentsFormatter()
@@ -259,9 +259,16 @@ extension ViewController {
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
-        isTypetingDigit = false
+//        isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-//        uesrdefulatView.resultTablewView.reloadData()
+        
+        guard let digit = calculatorView.resultButton.currentTitle, let curentText = resultText.text else { return }
+        if isTypetingDigit {
+            uesrDefaultView.test.text = "첫번쨰로입력된거 " + calculatorView.plusButton.currentTitle! + " 두번째로입력" + digit + curentText
+        } else {
+            uesrDefaultView.test.text = digit
+        }
+        isTypetingDigit = true
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func plusButtonClick() {
