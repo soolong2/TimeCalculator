@@ -276,11 +276,10 @@ extension ViewController {
         uesrDefaultView.isHidden = true
     }
     @objc func deleteButton() {
-//        UserDefaults.standard.removeObject(forKey: "dis")
         let alert = UIAlertController(title: "삭제하시겠습니까?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "아니요", style: .cancel,handler: nil))
         alert.addAction(UIAlertAction(title: "예", style: .default,handler: { _ in
-            UserDefaults.standard.removeObject(forKey: "dis")
+            UserDefaults.standard.removeObject(forKey: "UserDefaultsValue")
         }))
         self.present(alert, animated: true, completion: nil)
       
