@@ -23,10 +23,21 @@ class ViewController: UIViewController {
             resultText.text = "\(newValue)"
          defaults.set(displayValue, forKey: "UserDefaultsValue")
             self.UserDefaultsValue = UserDefaults.standard.integer(forKey: "UserDefaultsValue")
-            uesrdefulatView.resultTablewView.reloadData()
+            uesrDefaultView.test.text = "저장된값은??\(UserDefaultsValue)"
+            
+            guard let digit = calculatorView.plusButton.currentTitle, let curentText = uesrDefaultView.test.text else { return }
+                if isTypetingDigit {
+                    uesrDefaultView.test.text = curentText + digit
+                } else {
+                    uesrDefaultView.test.text = digit
+                }
+                isTypetingDigit = true
+
+            
         }
     }
-    private var isTypetingDigit: Bool = false
+    var isTypetingDigit: Bool = false
+    
     var calculatorView: CalculatorView = {
         let view = CalculatorView()
         view.backgroundColor = .systemBackground
@@ -91,6 +102,7 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(DefaultView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextSettingView))
         addSubView()
+        uesrDefaultView.test.text = "저장된값은??\(UserDefaultsValue)"
         print(UserDefaultsValue)
         
     }
@@ -249,7 +261,7 @@ extension ViewController {
         displayValue = Int(modal.result)
         isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-        uesrdefulatView.resultTablewView.reloadData()
+//        uesrdefulatView.resultTablewView.reloadData()
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func plusButtonClick() {
@@ -259,7 +271,7 @@ extension ViewController {
         displayValue = Int(modal.result)
         isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-        uesrdefulatView.resultTablewView.reloadData()
+//        uesrdefulatView.resultTablewView.reloadData()
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func minusButtonClick() {
@@ -269,7 +281,7 @@ extension ViewController {
         displayValue = modal.result
         isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-        uesrdefulatView.resultTablewView.reloadData()
+//        uesrdefulatView.resultTablewView.reloadData()
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func BackButton() {
