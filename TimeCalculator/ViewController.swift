@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     private var modal: Calculator = Calculator()
     let darkAndLight = PreferencesTableViewCell()
     let defaults = UserDefaults.standard
-    var a = UserDefaults.standard.integer(forKey: "dis")
+    var UserDefaultsValue = UserDefaults.standard.integer(forKey: "UserDefaultsValue")
     var displayValue: Int{
         get{
             guard let text = resultText.text else { return 0 }
@@ -21,9 +21,9 @@ class ViewController: UIViewController {
         }
         set{
             resultText.text = "\(newValue)"
-         defaults.set(displayValue, forKey: "dis")
-            self.a = UserDefaults.standard.integer(forKey: "dis")
-//            damodal.resultText.reloadData()
+         defaults.set(displayValue, forKey: "UserDefaultsValue")
+            self.UserDefaultsValue = UserDefaults.standard.integer(forKey: "UserDefaultsValue")
+            damodal.resultText.reloadData()
         }
     }
     private var isTypetingDigit: Bool = false
@@ -41,9 +41,9 @@ class ViewController: UIViewController {
         view.nineButton.addTarget(CalculatorView(), action: #selector(nineButtonClick), for: .touchUpInside)
         view.zeroButton.addTarget(CalculatorView(), action: #selector(zeroButtonClick), for: .touchUpInside)
         view.resetButton.addTarget(CalculatorView(), action: #selector(초기화ButtonClick), for: .touchUpInside)
-        view.resultButton.addTarget(CalculatorView(), action: #selector(계산ButtonClick), for: .touchUpInside)
-        view.plusButton.addTarget(CalculatorView(), action: #selector(플러스ButtonClick), for: .touchUpInside)
-        view.minusButton.addTarget(CalculatorView(), action: #selector(마이너스ButtonClick), for: .touchUpInside)
+        view.resultButton.addTarget(CalculatorView(), action: #selector(resetButtonClick), for: .touchUpInside)
+        view.plusButton.addTarget(CalculatorView(), action: #selector(plusButtonClick), for: .touchUpInside)
+        view.minusButton.addTarget(CalculatorView(), action: #selector(minusButtonClick), for: .touchUpInside)
         return view
     }()
     
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(DefaultView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextSettingView))
         addSubView()
-        print(a)
+        print(UserDefaultsValue)
         
     }
     @objc func DefaultView(_ sender: UIBarButtonItem) {
@@ -234,7 +234,7 @@ extension ViewController {
         }
         isTypetingDigit = true
     }
-    @objc func 계산ButtonClick() {
+    @objc func resetButtonClick() {
         guard let operation = calculatorView.resultButton.titleLabel?.text else { return }
         let interval = displayValue
         let formatter = DateComponentsFormatter()
@@ -248,29 +248,29 @@ extension ViewController {
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
         isTypetingDigit = false
-        damodal.da.append(displayValue)
+        damodal.currentDispalyValue.append(displayValue)
         damodal.resultText.reloadData()
-        print(damodal.da)
+        print(damodal.currentDispalyValue)
     }
-    @objc func 플러스ButtonClick() {
+    @objc func plusButtonClick() {
         guard let operation = calculatorView.plusButton.titleLabel?.text else { return }
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
         isTypetingDigit = false
-        damodal.da.append(displayValue)
+        damodal.currentDispalyValue.append(displayValue)
         damodal.resultText.reloadData()
-        print(damodal.da)
+        print(damodal.currentDispalyValue)
     }
-    @objc func 마이너스ButtonClick() {
+    @objc func minusButtonClick() {
         guard let operation = calculatorView.minusButton.titleLabel?.text else { return }
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = modal.result
         isTypetingDigit = false
-        damodal.da.append(displayValue)
+        damodal.currentDispalyValue.append(displayValue)
         damodal.resultText.reloadData()
-        print(damodal.da)
+        print(damodal.currentDispalyValue)
     }
     @objc func BackButton() {
         uesrDefaultView.isHidden = true

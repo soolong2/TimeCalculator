@@ -8,7 +8,7 @@
 import UIKit
 
 class UesrDefaultView: UIView {
-    var da : [Int] = []
+    var currentDispalyValue : [Int] = []
     let trashButton: UIButton = {
     let button = UIButton()
         button.setImage(.init(systemName: "trash"), for: .normal)
@@ -64,12 +64,12 @@ extension UesrDefaultView: UITableViewDelegate {
 }
 extension UesrDefaultView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ViewController().a
+        return ViewController().UserDefaultsValue
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UesrDefaultTableViewCell", for: indexPath) as? UesrDefaultTableViewCell else {return UITableViewCell()}
-        cell.UesrDefaultLabel.text = "\(ViewController().a)"
+        cell.UesrDefaultLabel.text = "\(ViewController().UserDefaultsValue)"
         return cell
     }
 }
