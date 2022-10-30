@@ -23,9 +23,9 @@ class SettingViewController: UIViewController {
         return settingLine
     }()
     var settingTebleView: SettingView = {
-        let settingLine = SettingView()
-        settingLine.backgroundColor = .white
-        return settingLine
+        let settingTebleView = SettingView()
+        settingTebleView.backgroundColor = .white
+        return settingTebleView
     }()
     override func viewDidLoad() {
         super.viewDidLoad()

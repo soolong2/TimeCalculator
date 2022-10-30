@@ -12,9 +12,9 @@ class OthersTableViewCell: UITableViewCell {
     static let identifier = "OthersTableViewCell"
     
     var title: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
-        return label
+        let title = UILabel()
+        title.font = .boldSystemFont(ofSize: 18)
+        return title
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

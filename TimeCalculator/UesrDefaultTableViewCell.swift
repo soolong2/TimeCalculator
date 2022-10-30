@@ -10,9 +10,9 @@ import UIKit
 class UesrDefaultTableViewCell: UITableViewCell {
     static let identifier = "UesrDefaultTableViewCell"
     var UesrDefaultLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
-        return label
+        let uesrDefaultLabel = UILabel()
+        uesrDefaultLabel.font = .boldSystemFont(ofSize: 18)
+        return uesrDefaultLabel
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

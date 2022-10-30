@@ -15,9 +15,9 @@ class PreferencesTableViewCell: UITableViewCell {
     let defaults = UserDefaults.standard
     let darkModeSwitchAct = "controlSwitch"
     lazy var title: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
-        return label
+        let title = UILabel()
+        title.font = .boldSystemFont(ofSize: 18)
+        return title
     }()
     func updateInterfaceStyle() {
         if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {

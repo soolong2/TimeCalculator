@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
-    let damodal = UesrDefaultView()
+    let uesrdefulatView = UesrDefaultView()
     private var modal: Calculator = Calculator()
     let darkAndLight = PreferencesTableViewCell()
     let defaults = UserDefaults.standard
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
             resultText.text = "\(newValue)"
          defaults.set(displayValue, forKey: "UserDefaultsValue")
             self.UserDefaultsValue = UserDefaults.standard.integer(forKey: "UserDefaultsValue")
-            damodal.resultText.reloadData()
+            uesrdefulatView.resultTablewView.reloadData()
         }
     }
     private var isTypetingDigit: Bool = false
@@ -248,9 +248,9 @@ extension ViewController {
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
         isTypetingDigit = false
-        damodal.currentDispalyValue.append(displayValue)
-        damodal.resultText.reloadData()
-        print(damodal.currentDispalyValue)
+        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
+        uesrdefulatView.resultTablewView.reloadData()
+        print(uesrdefulatView.currentDispalyValue)
     }
     @objc func plusButtonClick() {
         guard let operation = calculatorView.plusButton.titleLabel?.text else { return }
@@ -258,9 +258,9 @@ extension ViewController {
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
         isTypetingDigit = false
-        damodal.currentDispalyValue.append(displayValue)
-        damodal.resultText.reloadData()
-        print(damodal.currentDispalyValue)
+        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
+        uesrdefulatView.resultTablewView.reloadData()
+        print(uesrdefulatView.currentDispalyValue)
     }
     @objc func minusButtonClick() {
         guard let operation = calculatorView.minusButton.titleLabel?.text else { return }
@@ -268,9 +268,9 @@ extension ViewController {
         modal.performOperation(symbol: operation)
         displayValue = modal.result
         isTypetingDigit = false
-        damodal.currentDispalyValue.append(displayValue)
-        damodal.resultText.reloadData()
-        print(damodal.currentDispalyValue)
+        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
+        uesrdefulatView.resultTablewView.reloadData()
+        print(uesrdefulatView.currentDispalyValue)
     }
     @objc func BackButton() {
         uesrDefaultView.isHidden = true
