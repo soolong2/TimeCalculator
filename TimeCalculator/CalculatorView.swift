@@ -11,75 +11,99 @@ import SnapKit
 class CalculatorView: UIView {
     let oneButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("1", for: .normal)
         return button
     }()
     let twoButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
+        button.alpha = 20
         button.titleColor(for: .normal)
         button.setTitle("2", for: .normal)
         return button
     }()
     let threeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("3", for: .normal)
         return button
     }()
     let fourButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("4", for: .normal)
         return button
     }()
     let fiveButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("5", for: .normal)
         return button
     }()
     let sixButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("6", for: .normal)
         return button
     }()
     let sevenButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("7", for: .normal)
         return button
     }()
     let eightButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("8", for: .normal)
         return button
     }()
     let nineButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("9", for: .normal)
         return button
     }()
     let zeroButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("0", for: .normal)
         return button
     }()
     let minusButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("-", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
     let plusButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.tintColor = .systemBackground
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitle("+", for: .normal)
@@ -87,13 +111,17 @@ class CalculatorView: UIView {
     }()
     let resetButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .systemFont(ofSize: 26)
         button.setTitle("AC", for: .normal)
         return button
     }()
     let resultButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemOrange
+        button.setTitleColor(UIColor.customAccent, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.titleLabel?.font = .italicSystemFont(ofSize: 26)
         button.setTitle("=", for: .normal)
         return button
     }()
@@ -197,6 +225,21 @@ class CalculatorView: UIView {
             make.top.equalTo(self.zeroButton)
             make.trailing.equalTo(self.safeAreaLayoutGuide)
             make.bottom.equalTo(zeroButton)
+        }
+    }
+}
+extension UIColor {
+    static var customAccent: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor(ciColor: .white)
+                } else {
+                    return UIColor(ciColor: .black)
+                }
+            }
+        } else {
+            return UIColor(red: 0.8196078431, green: 0.3568627451, blue: 0.2235294118, alpha: 1.0)
         }
     }
 }
