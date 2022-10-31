@@ -147,7 +147,7 @@ extension MianViewController {
     @objc func oneButtonClick() {
         guard let digit = calculatorView.oneButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
-            resultText.text = curentText + digit
+            resultText.text = "\(curentText + digit)"
         } else {
             resultText.text = digit
         }
@@ -270,11 +270,12 @@ extension MianViewController {
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func plusButtonClick() {
+        
         guard let operation = calculatorView.plusButton.titleLabel?.text else { return }
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
-        isTypetingDigit = false
+//        isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
         print(uesrdefulatView.currentDispalyValue)
     }
