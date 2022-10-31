@@ -14,23 +14,12 @@ class PreferencesTableViewCell: UITableViewCell {
     static let identifier = "PreferencesTableViewCell"
     let defaults = UserDefaults.standard
     let darkModeSwitchAct = "controlSwitch"
-    lazy var title: UILabel = {
+    
+     var title: UILabel = {
         let title = UILabel()
         title.font = .boldSystemFont(ofSize: 18)
         return title
     }()
-    func updateInterfaceStyle() {
-        if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            if #available(iOS 15.0, *) {
-                let windows = window.windows.first
-                windows?.overrideUserInterfaceStyle = self.controlSwitch.isOn == true ? .dark : .light
-                userDefaults.set(controlSwitch.isOn, forKey: "appearanceSwitchState")
-            }
-        }
-    }
-    @objc func handleAppearanceChange(_ sender: UISwitch) {
-        self.updateInterfaceStyle()
-    }
     var controlSwitch: UISwitch = {
         let swicth: UISwitch = UISwitch()
         swicth.tintColor = UIColor.black
@@ -47,6 +36,18 @@ class PreferencesTableViewCell: UITableViewCell {
         swicth.addTarget(self, action: #selector(handleAppearanceChange), for: .valueChanged)
         return swicth
     }()
+    func updateInterfaceStyle() {
+        if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if #available(iOS 15.0, *) {
+                let windows = window.windows.first
+                windows?.overrideUserInterfaceStyle = self.controlSwitch.isOn == true ? .dark : .light
+                userDefaults.set(controlSwitch.isOn, forKey: "appearanceSwitchState")
+            }
+        }
+    }
+    @objc func handleAppearanceChange(_ sender: UISwitch) {
+        self.updateInterfaceStyle()
+    }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addContentView()

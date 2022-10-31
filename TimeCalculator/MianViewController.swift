@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class MianViewController: UIViewController {
     let uesrdefulatView = UesrDefaultView()
     private var modal: Calculator = Calculator()
     let darkAndLight = PreferencesTableViewCell()
@@ -23,17 +23,15 @@ class ViewController: UIViewController {
             resultText.text = "\(newValue)"
          defaults.set(displayValue, forKey: "UserDefaultsValue")
             self.UserDefaultsValue = UserDefaults.standard.integer(forKey: "UserDefaultsValue")
-            uesrDefaultView.test.text = "저장된값은??\(UserDefaultsValue)"
+            uesrDefaultView.resultViewLabel.text = "저장된값은??\(UserDefaultsValue)"
             
-            guard let digit = calculatorView.plusButton.currentTitle, let curentText = uesrDefaultView.test.text else { return }
+            guard let digit = calculatorView.plusButton.currentTitle, let curentText = uesrDefaultView.resultViewLabel.text else { return }
                 if isTypetingDigit {
-                    uesrDefaultView.test.text = curentText + digit
+                    uesrDefaultView.resultViewLabel.text = curentText + digit
                 } else {
-                    uesrDefaultView.test.text = digit
+                    uesrDefaultView.resultViewLabel.text = digit
                 }
                 isTypetingDigit = true
-
-            
         }
     }
     var isTypetingDigit: Bool = false
@@ -59,10 +57,10 @@ class ViewController: UIViewController {
     }()
     
     var resultTimeLable: UILabel = {
-        let textFieldView = UILabel()
-        textFieldView.backgroundColor = .systemBackground
-        textFieldView.text = "현재시간은??"
-        return textFieldView
+        let resultTimeLable = UILabel()
+        resultTimeLable.backgroundColor = .systemBackground
+        resultTimeLable.text = "현재시간은??"
+        return resultTimeLable
     }()
     
     var uesrDefaultView: UesrDefaultView = {
@@ -88,10 +86,10 @@ class ViewController: UIViewController {
     }()
     
     let resultText: UILabel = {
-        let resultTextLabel = UILabel()
-        resultTextLabel.backgroundColor = .systemBackground
-        resultTextLabel.text = "00:00"
-        return resultTextLabel
+        let resultText = UILabel()
+        resultText.backgroundColor = .systemBackground
+        resultText.text = "00:00"
+        return resultText
     }()
     
     override func viewDidLoad() {
@@ -99,14 +97,14 @@ class ViewController: UIViewController {
         darkAndLight.controlSwitch.isOn = darkAndLight.userDefaults.bool(forKey: "appearanceSwitchState")
         darkAndLight.updateInterfaceStyle()
         view.backgroundColor = .systemBackground
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(DefaultView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(defaultView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextSettingView))
         addSubView()
-        uesrDefaultView.test.text = "저장된값은??\(UserDefaultsValue)"
+        uesrDefaultView.resultViewLabel.text = "저장된값은??\(UserDefaultsValue)"
         print(UserDefaultsValue)
         
     }
-    @objc func DefaultView(_ sender: UIBarButtonItem) {
+    @objc func defaultView(_ sender: UIBarButtonItem) {
         uesrDefaultView.isHidden = false
     }
     @objc func nextSettingView(_ sender: UIBarButtonItem) {
@@ -145,7 +143,7 @@ class ViewController: UIViewController {
         }
     }
 }
-extension ViewController {
+extension MianViewController {
     @objc func oneButtonClick() {
         guard let digit = calculatorView.oneButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
@@ -264,9 +262,9 @@ extension ViewController {
         
         guard let digit = calculatorView.resultButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
-            uesrDefaultView.test.text = "첫번쨰로입력된거 " + calculatorView.plusButton.currentTitle! + " 두번째로입력" + digit + curentText
+            uesrDefaultView.resultViewLabel.text = "첫번쨰로입력된거 " + calculatorView.plusButton.currentTitle! + " 두번째로입력" + digit + curentText
         } else {
-            uesrDefaultView.test.text = digit
+            uesrDefaultView.resultViewLabel.text = digit
         }
         isTypetingDigit = true
         print(uesrdefulatView.currentDispalyValue)
@@ -278,7 +276,6 @@ extension ViewController {
         displayValue = Int(modal.result)
         isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-//        uesrdefulatView.resultTablewView.reloadData()
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func minusButtonClick() {
@@ -288,7 +285,6 @@ extension ViewController {
         displayValue = modal.result
         isTypetingDigit = false
         uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-//        uesrdefulatView.resultTablewView.reloadData()
         print(uesrdefulatView.currentDispalyValue)
     }
     @objc func BackButton() {

@@ -17,10 +17,10 @@ class SettingView: UIView {
     var datasouce5 = ["앱평가","몫","기부","피드백 보내기"]
     
     let settingTablewView : UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
-        tableView.rowHeight = UITableView.automaticDimension
-        return tableView
+        let settingTablewView = UITableView()
+        settingTablewView.backgroundColor = .systemBackground
+        settingTablewView.rowHeight = UITableView.automaticDimension
+        return settingTablewView
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,23 +8,22 @@
 import UIKit
 
 class SoundTableViewCell: UITableViewCell {
-
+    
     
     let userDefaults = UserDefaults.standard
     
     static let identifier = "SoundTableViewCell"
     let defaults = UserDefaults.standard
     let darkModeSwitchAct = "controlSwitch"
-    lazy var title: UILabel = {
+    
+    var title: UILabel = {
         let title = UILabel()
         title.font = .boldSystemFont(ofSize: 18)
         return title
     }()
-   
     var controlSwitch: UISwitch = {
         let swicth: UISwitch = UISwitch()
         swicth.tintColor = UIColor.black
-        
         return swicth
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

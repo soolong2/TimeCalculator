@@ -20,17 +20,17 @@ class UesrDefaultView: UIView {
         button.setImage(.init(systemName: "clear"), for: .normal)
         return button
     }()
-    let resultTablewView: UIView = {
-        let textFieldView = UIView()
-        textFieldView.backgroundColor = .systemBackground
-        return textFieldView
+    let resultView: UIView = {
+        let resultView = UIView()
+        resultView.backgroundColor = .systemBackground
+        return resultView
     }()
-    var test: UILabel = {
-        let textFieldView = UILabel()
-        textFieldView.backgroundColor = .systemBackground
+    var resultViewLabel: UILabel = {
+        let resultViewLabel = UILabel()
+        resultViewLabel.backgroundColor = .systemBackground
 //        textFieldView.text = "현재시간은??"
-        textFieldView.numberOfLines = 0
-        return textFieldView
+        resultViewLabel.numberOfLines = 0
+        return resultViewLabel
     }()
     
     override init(frame: CGRect) {
@@ -45,8 +45,8 @@ class UesrDefaultView: UIView {
         backgroundColor = .white
         addSubview(trashButton)
         addSubview(clearButton)
-        addSubview(resultTablewView)
-        addSubview(test)
+        addSubview(resultView)
+        addSubview(resultViewLabel)
 //        resultTablewView.delegate = self
 //        resultTablewView.dataSource = self
 //        resultTablewView.register(UesrDefaultTableViewCell.self, forCellReuseIdentifier: UesrDefaultTableViewCell.identifier)
@@ -60,36 +60,19 @@ class UesrDefaultView: UIView {
             make.top.trailing.equalTo(self.safeAreaLayoutGuide)
             make.width.height.equalTo(30)
         }
-        resultTablewView.snp.makeConstraints { make in
+        resultView.snp.makeConstraints { make in
             make.top.equalTo(trashButton.snp.bottom).offset(20)
             make.leading.equalTo(self.safeAreaLayoutGuide)
             make.trailing.equalTo(self.safeAreaLayoutGuide)
             make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
-        test.snp.makeConstraints { make in
-            make.top.equalTo(resultTablewView.snp.top).offset(70)
-            make.leading.equalTo(resultTablewView.snp.leading).offset(20)
-            make.trailing.equalTo(resultTablewView.snp.trailing).offset(-20)
+        resultViewLabel.snp.makeConstraints { make in
+            make.top.equalTo(resultView.snp.top).offset(70)
+            make.leading.equalTo(resultView.snp.leading).offset(20)
+            make.trailing.equalTo(resultView.snp.trailing).offset(-20)
 //            make.bottom.equalTo(resultTablewView.snp.bottom).offset(-70)
             make.width.equalTo(50)
         }
     }
 }
-//extension UesrDefaultView: UITableViewDelegate {
-//
-//}
-//extension UesrDefaultView: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////        return currentDispalyValue.count
-//       return ViewController().UserDefaultsValue
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UesrDefaultTableViewCell", for: indexPath) as? UesrDefaultTableViewCell else {return UITableViewCell()}
-////        cell.UesrDefaultLabel.text = currentDispalyValue[indexPath.row]
-//        cell.UesrDefaultLabel.text = "\(ViewController().UserDefaultsValue)"
-////        tableView.reloadData()
-//        return cell
-//
-//    }
-//}
+
