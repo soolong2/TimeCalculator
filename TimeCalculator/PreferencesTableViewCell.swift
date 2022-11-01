@@ -15,7 +15,7 @@ class PreferencesTableViewCell: UITableViewCell {
     let defaults = UserDefaults.standard
     let darkModeSwitchAct = "controlSwitch"
     
-     var title: UILabel = {
+    var title: UILabel = {
         let title = UILabel()
         title.font = .boldSystemFont(ofSize: 18)
         return title

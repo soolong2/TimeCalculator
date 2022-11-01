@@ -11,13 +11,18 @@ class UesrDefaultView: UIView {
     var currentDispalyValue : [String] = []
     let trashButton: UIButton = {
     let button = UIButton()
-        button.setImage(.init(systemName: "trash"), for: .normal)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
+               let image = UIImage(systemName: "trash", withConfiguration: imageConfig)
+        button.backgroundColor = .systemBackground
+        button.setImage(image, for: .normal)
         return button
     }()
     let clearButton: UIButton = {
     let button = UIButton()
-        button.titleColor(for: .normal)
-        button.setImage(.init(systemName: "clear"), for: .normal)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
+               let image = UIImage(systemName: "clear", withConfiguration: imageConfig)
+        button.backgroundColor = .systemBackground
+        button.setImage(image, for: .normal)
         return button
     }()
     let resultView: UIView = {
@@ -47,13 +52,10 @@ class UesrDefaultView: UIView {
         addSubview(clearButton)
         addSubview(resultView)
         addSubview(resultViewLabel)
-//        resultTablewView.delegate = self
-//        resultTablewView.dataSource = self
-//        resultTablewView.register(UesrDefaultTableViewCell.self, forCellReuseIdentifier: UesrDefaultTableViewCell.identifier)
     }
     func setupConstraints() {
         trashButton.snp.makeConstraints { make in
-            make.top.leading.equalTo(self.safeAreaLayoutGuide)
+            make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(10)
             make.width.height.equalTo(30)
         }
         clearButton.snp.makeConstraints { make in
@@ -70,7 +72,6 @@ class UesrDefaultView: UIView {
             make.top.equalTo(resultView.snp.top).offset(70)
             make.leading.equalTo(resultView.snp.leading).offset(20)
             make.trailing.equalTo(resultView.snp.trailing).offset(-20)
-//            make.bottom.equalTo(resultTablewView.snp.bottom).offset(-70)
             make.width.equalTo(50)
         }
     }

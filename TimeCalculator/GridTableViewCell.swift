@@ -9,9 +9,7 @@ import UIKit
 
 class GridTableViewCell: UITableViewCell {
     
-    
     let userDefaults = UserDefaults.standard
-    
     static let identifier = "GridTableViewCell"
     let defaults = UserDefaults.standard
     let darkModeSwitchAct = "controlSwitch"

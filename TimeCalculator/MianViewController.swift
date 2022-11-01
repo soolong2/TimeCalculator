@@ -21,21 +21,20 @@ class MianViewController: UIViewController {
         }
         set{
             resultText.text = "\(newValue)"
-         defaults.set(displayValue, forKey: "UserDefaultsValue")
+            defaults.set(displayValue, forKey: "UserDefaultsValue")
             self.UserDefaultsValue = UserDefaults.standard.integer(forKey: "UserDefaultsValue")
             uesrDefaultView.resultViewLabel.text = "저장된값은??\(UserDefaultsValue)"
             
             guard let digit = calculatorView.plusButton.currentTitle, let curentText = uesrDefaultView.resultViewLabel.text else { return }
-                if isTypetingDigit {
-                    uesrDefaultView.resultViewLabel.text = curentText + digit
-                } else {
-                    uesrDefaultView.resultViewLabel.text = digit
-                }
-                isTypetingDigit = true
+            if isTypetingDigit {
+                uesrDefaultView.resultViewLabel.text = curentText + digit
+            } else {
+                uesrDefaultView.resultViewLabel.text = digit
+            }
+            isTypetingDigit = true
         }
     }
     var isTypetingDigit: Bool = false
-    
     var calculatorView: CalculatorView = {
         let view = CalculatorView()
         view.backgroundColor = .systemBackground
@@ -55,14 +54,12 @@ class MianViewController: UIViewController {
         view.minusButton.addTarget(CalculatorView(), action: #selector(minusButtonClick), for: .touchUpInside)
         return view
     }()
-    
     var resultTimeLable: UILabel = {
         let resultTimeLable = UILabel()
         resultTimeLable.backgroundColor = .systemBackground
         resultTimeLable.text = "현재시간은??"
         return resultTimeLable
     }()
-    
     var uesrDefaultView: UesrDefaultView = {
         let view = UesrDefaultView()
         view.clearButton.addTarget(self, action: #selector(BackButton), for: .touchUpInside)
@@ -71,41 +68,52 @@ class MianViewController: UIViewController {
         view.isHidden = true
         return view
     }()
-    
     let viewReturnButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemOrange
         button.setImage(UIImage(named: "gearshape"), for: .normal)
         return button
     }()
-    
+    let squarefilButton: UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "square.fill.on.square.fill", withConfiguration: imageConfig)
+        button.backgroundColor = .systemBackground
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    let gearshapeButton: UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "gearshape", withConfiguration: imageConfig)
+        button.backgroundColor = .systemBackground
+        button.setImage(image, for: .normal)
+        return button
+    }()
     var labelView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         return view
     }()
-    
     let resultText: UILabel = {
         let resultText = UILabel()
         resultText.backgroundColor = .systemBackground
         resultText.text = "00:00"
         return resultText
     }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         darkAndLight.controlSwitch.isOn = darkAndLight.userDefaults.bool(forKey: "appearanceSwitchState")
         darkAndLight.updateInterfaceStyle()
         view.backgroundColor = .systemBackground
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .init(systemName: "square.fill.on.square.fill"), style: .done, target: self, action: #selector(defaultView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .done, target: self, action: #selector(nextSettingView))
+        self.gearshapeButton.addTarget(self, action: #selector(nextSettingView), for: .touchUpInside)
+        self.squarefilButton.addTarget(self, action: #selector(defaultView), for: .touchUpInside)
         addSubView()
         uesrDefaultView.resultViewLabel.text = "저장된값은??\(UserDefaultsValue)"
-        print(UserDefaultsValue)
-        
     }
     @objc func defaultView(_ sender: UIBarButtonItem) {
         uesrDefaultView.isHidden = false
+        self.squarefilButton.isHidden = true
     }
     @objc func nextSettingView(_ sender: UIBarButtonItem) {
         let settingView = SettingViewController()
@@ -117,6 +125,8 @@ class MianViewController: UIViewController {
         view.addSubview(resultText)
         view.addSubview(resultTimeLable)
         view.addSubview(uesrDefaultView)
+        view.addSubview(gearshapeButton)
+        view.addSubview(squarefilButton)
         
         calculatorView.snp.makeConstraints { make in
             make.top.equalTo(self.labelView.snp.bottom)
@@ -132,6 +142,14 @@ class MianViewController: UIViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.equalTo(uesrDefaultView)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        gearshapeButton.snp.makeConstraints { make in
+            make.top.equalTo(labelView.snp.top).offset(5)
+            make.trailing.equalTo(labelView.snp.trailing).offset(-10)
+        }
+        squarefilButton.snp.makeConstraints { make in
+            make.top.equalTo(labelView.snp.top).offset(5)
+            make.leading.equalTo(labelView.snp.leading).offset(5)
         }
         resultText.snp.makeConstraints { make in
             make.bottom.equalTo(labelView.snp.bottom).offset(-30)
@@ -251,14 +269,13 @@ extension MianViewController {
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.zeroFormattingBehavior = .pad
         formatter.unitsStyle = .full
-        
         let formattedString = formatter.string(from: TimeInterval(interval))!
         resultTimeLable.text = formattedString
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
-//        isTypetingDigit = false
-        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
+        //        isTypetingDigit = false
+//        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
         
         guard let digit = calculatorView.resultButton.currentTitle, let curentText = resultText.text else { return }
         if isTypetingDigit {
@@ -267,17 +284,15 @@ extension MianViewController {
             uesrDefaultView.resultViewLabel.text = digit
         }
         isTypetingDigit = true
-        print(uesrdefulatView.currentDispalyValue)
+//        print(uesrdefulatView.currentDispalyValue)
     }
     @objc func plusButtonClick() {
-        
         guard let operation = calculatorView.plusButton.titleLabel?.text else { return }
         modal.setOperand(operand: Int(displayValue))
         modal.performOperation(symbol: operation)
         displayValue = Int(modal.result)
-//        isTypetingDigit = false
-        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-        print(uesrdefulatView.currentDispalyValue)
+//        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
+//        print(uesrdefulatView.currentDispalyValue)
     }
     @objc func minusButtonClick() {
         guard let operation = calculatorView.minusButton.titleLabel?.text else { return }
@@ -285,11 +300,12 @@ extension MianViewController {
         modal.performOperation(symbol: operation)
         displayValue = modal.result
         isTypetingDigit = false
-        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
-        print(uesrdefulatView.currentDispalyValue)
+//        uesrdefulatView.currentDispalyValue.append("\(displayValue)")
+//        print(uesrdefulatView.currentDispalyValue)
     }
     @objc func BackButton() {
         uesrDefaultView.isHidden = true
+        self.squarefilButton.isHidden = false
     }
     @objc func deleteButton() {
         let alert = UIAlertController(title: "삭제하시겠습니까?", message: "", preferredStyle: .alert)
@@ -298,8 +314,6 @@ extension MianViewController {
             UserDefaults.standard.removeObject(forKey: "UserDefaultsValue")
         }))
         self.present(alert, animated: true, completion: nil)
-      
     }
-    
 }
 
