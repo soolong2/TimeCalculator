@@ -8,7 +8,6 @@
 import UIKit
 
 class UesrDefaultView: UIView {
-    var currentDispalyValue : [String] = []
     let trashButton: UIButton = {
     let button = UIButton()
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
