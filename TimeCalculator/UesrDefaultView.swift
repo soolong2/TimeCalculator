@@ -36,18 +36,15 @@ class UesrDefaultView: UIView {
         resultViewLabel.numberOfLines = 0
         return resultViewLabel
     }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setupConstraints()
-    
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     func setupView() {
-        resultTableView.delegate = self
         resultTableView.dataSource = self
         resultTableView.register(UesrDefaultTableViewCell.self, forCellReuseIdentifier: UesrDefaultTableViewCell.identifier)
         
@@ -72,21 +69,13 @@ class UesrDefaultView: UIView {
         }
     }
 }
-extension UesrDefaultView: UITableViewDelegate{
-    
-}
 extension UesrDefaultView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.count ?? 0
-        
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UesrDefaultTableViewCell", for: indexPath) as? UesrDefaultTableViewCell else {return UITableViewCell()}
         cell.title.text = data?[indexPath.row]
         return cell
-        
     }
-    
-    
 }

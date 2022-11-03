@@ -16,7 +16,6 @@ class OthersTableViewCell: UITableViewCell {
         title.font = .boldSystemFont(ofSize: 18)
         return title
     }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addContentView()

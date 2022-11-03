@@ -18,7 +18,6 @@ class GridTableViewCell: UITableViewCell {
         title.font = .boldSystemFont(ofSize: 18)
         return title
     }()
-    
     var controlSwitch: UISwitch = {
         let swicth: UISwitch = UISwitch()
         swicth.tintColor = UIColor.black

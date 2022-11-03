@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
     private lazy var result = ""
     private lazy var currentOperation: Operation = .unknown
     
-   lazy var formula = ""                // 계산식 담는 문자열
+    lazy var formula = ""                // 계산식 담는 문자열
     private lazy var isClickedOperation = false  // 연산자 버튼이 눌렸는지
     private lazy var isClickedEqual = false      // = 기호 눌렀는지
     private lazy var isAddedFormula = false      // secondOperand를 formula에 넣었는지
@@ -111,7 +111,7 @@ class MainViewController: UIViewController {
         self.gearshapeButton.addTarget(self, action: #selector(nextSettingView), for: .touchUpInside)
         self.squarefilButton.addTarget(self, action: #selector(defaultView), for: .touchUpInside)
         addSubView()
-     
+        
     }
     @objc func defaultView(_ sender: UIBarButtonItem) {
         uesrDefaultView.isHidden = false
