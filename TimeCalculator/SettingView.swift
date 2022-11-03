@@ -20,6 +20,7 @@ class SettingView: UIView {
         let settingTablewView = UITableView()
         settingTablewView.backgroundColor = .systemBackground
         settingTablewView.rowHeight = UITableView.automaticDimension
+    
         return settingTablewView
     }()
     override init(frame: CGRect) {

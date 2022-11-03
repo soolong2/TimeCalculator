@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MianViewController: UIViewController {
+class MainViewController: UIViewController {
     let uesrdefulatView = UesrDefaultView()
     let darkAndLight = PreferencesTableViewCell()
     let defaults = UserDefaults.standard
@@ -20,7 +20,7 @@ class MianViewController: UIViewController {
     private lazy var result = ""
     private lazy var currentOperation: Operation = .unknown
     
-    private lazy var formula = ""                // 계산식 담는 문자열
+   lazy var formula = ""                // 계산식 담는 문자열
     private lazy var isClickedOperation = false  // 연산자 버튼이 눌렸는지
     private lazy var isClickedEqual = false      // = 기호 눌렀는지
     private lazy var isAddedFormula = false      // secondOperand를 formula에 넣었는지
@@ -111,6 +111,7 @@ class MianViewController: UIViewController {
         self.gearshapeButton.addTarget(self, action: #selector(nextSettingView), for: .touchUpInside)
         self.squarefilButton.addTarget(self, action: #selector(defaultView), for: .touchUpInside)
         addSubView()
+     
     }
     @objc func defaultView(_ sender: UIBarButtonItem) {
         uesrDefaultView.isHidden = false
@@ -167,7 +168,7 @@ class MianViewController: UIViewController {
         }
     }
 }
-extension MianViewController {
+extension MainViewController {
     @objc func oneButtonClick() {
         createCorrectFormula()
         guard let numberValue = calculatorView.oneButton.title(for: .normal) else { return }
@@ -274,16 +275,20 @@ extension MianViewController {
         
         if formula != "0:00 = 0:00" {
             var history = UserDefaults.standard.array(forKey: "History") as? [String]
+            
             if history == nil {
                 history = [formula]
+                uesrdefulatView.resultTableView.reloadData()
             } else {
                 history?.append(formula)
+                uesrdefulatView.resultTableView.reloadData()
             }
             UserDefaults.standard.set(history!, forKey: "History")
-            uesrDefaultView.resultViewLabel.text = "\(history!)"
+            uesrdefulatView.resultTableView.reloadData()
+            
         }
         formula = ""
-        
+        uesrdefulatView.resultTableView.reloadData()
         
     }
     @objc func plusButtonClick() {
@@ -306,7 +311,7 @@ extension MianViewController {
         alert.addAction(UIAlertAction(title: "아니요", style: .cancel,handler: nil))
         alert.addAction(UIAlertAction(title: "예", style: .default,handler: { _ in
             UserDefaults.standard.removeObject(forKey: "History")
-            self.uesrDefaultView.resultViewLabel.text = " "
+            self.uesrdefulatView.resultTableView.reloadData()
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -447,8 +452,6 @@ extension MianViewController {
             } else {
                 inputMinute = Int(secondOperand.joined()) ?? 0
             }
-            
-            //            print("operandMinute = \(operandMinute), inputMinute = \(inputMinute)")
             if operandMinute < inputMinute {
                 result = Int(firstOperand.joined())! - (Int(secondOperand.joined()) ?? 0) - 40
             } else {
