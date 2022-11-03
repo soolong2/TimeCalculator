@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
     var resultTimeLable: UILabel = {
         let resultTimeLable = UILabel()
         resultTimeLable.backgroundColor = .systemBackground
-        resultTimeLable.text = "현재시간은??"
+        resultTimeLable.text = "시간결과값은?"
         return resultTimeLable
     }()
     var uesrDefaultView: UesrDefaultView = {
@@ -159,7 +159,7 @@ class MainViewController: UIViewController {
             make.trailing.equalTo(labelView.snp.trailing).offset(-30)
         }
         resultTimeLable.snp.makeConstraints { make in
-            make.bottom.equalTo(resultText.snp.top).offset(-60)
+            make.bottom.equalTo(resultText.snp.top).offset(-20)
             make.trailing.equalTo(resultText)
         }
         symbolLabel.snp.makeConstraints { make in
